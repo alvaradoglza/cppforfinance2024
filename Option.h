@@ -21,7 +21,7 @@ public:
     }
 
     // Pure virtual function for payoff
-    virtual double payoff(double price) const = 0;
+    virtual double payoff(double) const = 0;
 };
 
 #endif

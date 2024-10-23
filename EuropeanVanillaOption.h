@@ -14,7 +14,6 @@ typedef enum{call, put} optionType;
 class EuropeanVanillaOption : public Option {
 private:
     double _strike;
-    optionType;
 
 public:
 
@@ -31,10 +30,8 @@ public:
     }
 
     // Pure virtual method to get option type (to be implemented by derived classes)
-    virtual optionType GetOptionType() const = 0;
+    virtual optionType GetOptionType(optionType) const = 0;
 
-    // Destructor
-    virtual ~EuropeanVanillaOption() {}
 };
 
 #endif
