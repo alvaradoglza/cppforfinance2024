@@ -15,7 +15,7 @@ public:
     // Constructor
     CallOption(double expiry, double strike) : EuropeanVanillaOption(expiry, strike) {}
 
-    // Implement the payoff function for Put Option
+    // Implement the payoff function for Call Option
     double payoff(double z) const override {
         return (z >= getStrike()) ? (z - getStrike()) : 0;
     }
