@@ -11,6 +11,7 @@
 
 class PutOption : public EuropeanVanillaOption {
 public:
+
     // Constructor
     PutOption(double expiry, double strike) : EuropeanVanillaOption(expiry, strike) {}
 
