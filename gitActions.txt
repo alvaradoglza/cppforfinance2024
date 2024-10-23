@@ -8,3 +8,5 @@ Git push
 Git fetch
 Git Pull
 
+if you hava a problem and want the push to overrite your changes, to this before
+ git reset --hard
