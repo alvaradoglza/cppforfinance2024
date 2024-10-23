@@ -3,5 +3,7 @@ Git Status
 Git Commit -a
 Git push
 
+
+Git fetch
 Git Pull
 
