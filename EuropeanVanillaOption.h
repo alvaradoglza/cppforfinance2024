@@ -9,13 +9,14 @@
 
 #include "option.h" // Include the base Option class
 
+typedef enum{call, put} optionType;
+
 class EuropeanVanillaOption : public Option {
 private:
     double _strike;
+    optionType;
 
 public:
-    // Enum class for option types
-    enum class optionType { call, put };
 
     // Constructor to initialize _expiry and _strike
     EuropeanVanillaOption(double expiry, double strike) : Option(expiry), _strike(strike) {

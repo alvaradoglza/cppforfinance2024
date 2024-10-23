@@ -22,9 +22,6 @@ public:
 
     // Pure virtual function for payoff
     virtual double payoff(double price) const = 0;
-
-    // Virtual destructor
-    virtual ~Option() {}
 };
 
 #endif
