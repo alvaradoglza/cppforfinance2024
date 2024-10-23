@@ -13,10 +13,12 @@ private:
 
 public:
     // Constructor that initializes _expiry with an argument
-    Option(double expiry) : _expiry(expiry) {}
+    Option(double expiry) : _expiry(expiry) {
     if (expiry < 0) {
             throw std::invalid_argument("Expiry must be non-negative.");
         }
+    }
+
 
     // Getter method for _expiry
     double getExpiry() const {

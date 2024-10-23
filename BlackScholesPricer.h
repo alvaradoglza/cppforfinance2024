@@ -1,10 +1,14 @@
 // =========================================================
-// File: BlackScholesPricer.h
-// Author: 
-// Date: [23:10.2025]
+// File: blackScholesPricer.h
+// Author: [Your Name]
+// Date: [Current Date]
 // Description: Header file for BlackScholesPricer class
 // =========================================================
+#ifndef BLACKSCHOLESPRICER_H
+#define BLACKSCHOLESPRICER_H
 
+#include <cmath>
+#include "EuropeanVanillaOption.h" // Include the base class
 class BlackScholesPricer {
 private:
     EuropeanVanillaOption* _option;
@@ -33,13 +37,15 @@ public:
         double Nd1 = 0.5 * std::erfc(-d1 / std::sqrt(2));  // Cumulative distribution function for the standard normal
         double Nd2 = 0.5 * std::erfc(-d2 / std::sqrt(2));
 
-        if (_option->GetOptionType() == EuropeanVanillaOption::optionType::call) {
+        if (_option->GetOptionType() == optionType::call) {
             // Call option price
             return S * Nd1 - K * std::exp(-r * T) * Nd2;
-        } else {
+        } 
+        else {
             // Put option price
             return K * std::exp(-r * T) * (1 - Nd2) - S * (1 - Nd1);
         }
+        return 0;
     }
 
     // Method to calculate the Delta of the option
@@ -52,13 +58,17 @@ public:
         double d1 = (std::log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * std::sqrt(T));
         double Nd1 = 0.5 * std::erfc(-d1 / std::sqrt(2));
 
-        if (_option->GetOptionType() == EuropeanVanillaOption::optionType::call) {
+        if (_option->GetOptionType() == optionType::call) {
             // Delta for a call option
             return Nd1;
-        } else {
+        } 
+        else {
             // Delta for a put option
             return Nd1 - 1;
         }
+        return 0;
+
     }
 };
 
+#endif

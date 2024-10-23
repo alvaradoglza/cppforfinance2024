@@ -7,9 +7,9 @@
 #ifndef EUROPEANVANILLAOPTION_H
 #define EUROPEANVANILLAOPTION_H
 
-#include "option.h" // Include the base Option class
+#include "Option.h" // Include the base Option class
 
-typedef enum{call, put} optionType;
+enum optionType {call, put} ;
 
 class EuropeanVanillaOption : public Option {
 private:
@@ -30,7 +30,7 @@ public:
     }
 
     // Pure virtual method to get option type (to be implemented by derived classes)
-    virtual optionType GetOptionType(optionType) const = 0;
+    virtual optionType GetOptionType() const = 0;
 
 };
 

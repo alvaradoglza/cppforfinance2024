@@ -7,7 +7,7 @@
 #ifndef PUTOPTION_H
 #define PUTOPTION_H
 
-#include "europeanVanillaOption.h" // Include the base class
+#include "EuropeanVanillaOption.h" // Include the base class
 
 class PutOption : public EuropeanVanillaOption {
 public:

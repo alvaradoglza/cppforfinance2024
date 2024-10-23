@@ -7,7 +7,7 @@
 #ifndef CALLOPTION_H
 #define CALLOPTION_H
 
-#include "europeanVanillaOption.h" // Include the base class
+#include "EuropeanVanillaOption.h" // Include the base class
 
 class CallOption : public EuropeanVanillaOption {
 public:
