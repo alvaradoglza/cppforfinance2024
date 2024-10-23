@@ -19,8 +19,8 @@ public:
 
     // Constructor to initialize _expiry and _strike
     EuropeanVanillaOption(double expiry, double strike) : Option(expiry), _strike(strike) {
-        if (expiry < 0 || strike < 0) {
-            throw std::invalid_argument("Expiry and strike must be non-negative");
+        if (strike < 0) {
+            throw std::invalid_argument("Strike must be non-negative");
         }
     }
 
