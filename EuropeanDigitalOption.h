@@ -12,6 +12,6 @@ public:
 
     virtual double payoff(double z) const = 0;
 };
-
+#endif
 
 

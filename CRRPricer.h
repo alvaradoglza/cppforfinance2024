@@ -1,3 +1,6 @@
+#ifndef CRRPRICER_H
+#define CRRPRICER_H
+
 #include <cmath>
 #include "BinaryTree.h"
 #include "Option.h"
@@ -69,3 +72,5 @@ public:
         }
     }
 };
+
+#endif
