@@ -1,3 +1,5 @@
+#ifndef EUROPEANDIGITALCALLOPTION_H
+#define EUROPEANDIGITALCALLOPTION_H
 #include "EuropeanDigitalOption.h"
 
 class EuropeanDigitalCallOption : public EuropeanDigitalOption {

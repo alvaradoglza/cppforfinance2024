@@ -1,3 +1,6 @@
+#ifndef EUROPEANDIGITALOPTION_H
+#define EUROPEANDIGITALOPTION_H
+
 #include "Option.h"
 
 class EuropeanDigitalOption : public Option {
