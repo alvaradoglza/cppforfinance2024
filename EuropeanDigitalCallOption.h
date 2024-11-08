@@ -1,3 +1,5 @@
+#ifndef EUROPEANDIGITALCALLOPTION_H
+#define EUROPEANDIGITALCALLOPTION_H
 #include "EuropeanDigitalOption.h"
 
 class EuropeanDigitalCallOption : public EuropeanDigitalOption {
@@ -8,3 +10,4 @@ public:
         return (z >= _strike) ? 1.0 : 0.0;
     }
 };
+#endif

@@ -1,3 +1,6 @@
+#ifndef EUROPEANDIGITALOPTION_H
+#define EUROPEANDIGITALOPTION_H
+
 #include "Option.h"
 
 class EuropeanDigitalOption : public Option {
@@ -9,6 +12,6 @@ public:
 
     virtual double payoff(double z) const = 0;
 };
-
+#endif
 
 

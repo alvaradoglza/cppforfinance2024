@@ -1,44 +1,48 @@
-// =========================================================
-// File: main.cpp
-// Author: [Your Name]
-// Date: [Current Date]
-// Description: Main file to test Option classes and Black-Scholes pricer
-// =========================================================
-
 #include <iostream>
-#include "BlackScholesPricer.h"
-#include "PutOption.h"
 #include "CallOption.h"
+#include "PutOption.h"
+#include "EuropeanDigitalCallOption.h"
+#include "EuropeanDigitalPutOption.h"
+#include "BlackScholesPricer.h"
+#include "CRRPricer.h"
+#include "BinaryTree.h"
 
-int main() {
-    // Test with a Call Option
-    double expiry = 5.0;          // 1 year to expiry
-    double strike = 101.0;        // Strike price of 100
-    double assetPrice = 100.0;    // Current asset price
-    double interestRate = 0.01;   // 5% risk-free rate
-    double volatility = 0.1;      // 20% volatility
 
-    // Create a CallOption object
-    CallOption callOption(expiry, strike);
-    std::cout << "Call Option Strike Price: " << callOption.getStrike() << std::endl;
+int main() 
+    {
 
-    // Create a BlackScholesPricer for the Call Option
-    BlackScholesPricer callPricer(&callOption, assetPrice, interestRate, volatility);
-    std::cout << "Call Option Price (Black-Scholes): " << callPricer() << std::endl;
-    std::cout << "Call Option Delta: " << callPricer.delta() << std::endl;
+        double S0(95.), K(100.), T(0.5), r(0.02), sigma(0.2);
+        CallOption opt1(T, K);
+        PutOption opt2(T, K);
 
-    std::cout << "===============================" << std::endl;
 
-    // Test with a Put Option
-    double putStrike = 95.0;      // Strike price of 95
-    // Create a PutOption object
-    PutOption putOption(expiry, putStrike);
-    std::cout << "Put Option Strike Price: " << putOption.getStrike() << std::endl;
+        std::cout << "European options 1" << std::endl << std::endl;
 
-    // Create a BlackScholesPricer for the Put Option
-    BlackScholesPricer putPricer(&putOption, assetPrice, interestRate, volatility);
-    std::cout << "Put Option Price (Black-Scholes): " << putPricer() << std::endl;
-    std::cout << "Put Option Delta: " << putPricer.delta() << std::endl;
+        {
+            BlackScholesPricer pricer1(&opt1, S0, r, sigma);
+            std::cout << "BlackScholesPricer price=" << pricer1() << ", delta=" << pricer1.delta() << std::endl;
 
-    return 0;
-}
+            BlackScholesPricer pricer2(&opt2, S0, r, sigma);
+            std::cout << "BlackScholesPricer price=" << pricer2() << ", delta=" << pricer2.delta() << std::endl;
+            std::cout << std::endl;
+
+            int N(150);
+            double U = exp(sigma * sqrt(T / N)) - 1.0;
+            double D = exp(-sigma * sqrt(T / N)) - 1.0;
+            double R = exp(r * T / N) - 1.0;
+
+            CRRPricer crr_pricer1(&opt1, N, S0, U, D, R);
+            std::cout << "Calling CRR pricer with depth=" << N << std::endl;
+            std::cout << std::endl;
+            std::cout << "CRR pricer computed price=" << crr_pricer1() << std::endl;
+            std::cout << "CRR pricer explicit formula price=" << crr_pricer1(true) << std::endl;
+            std::cout << std::endl;
+
+            CRRPricer crr_pricer2(&opt2, N, S0, U, D, R);
+            std::cout << "Calling CRR pricer with depth=" << N << std::endl;
+            std::cout << std::endl;
+            std::cout << "CRR pricer computed price=" << crr_pricer2() << std::endl;
+            std::cout << "CRR pricer explicit formula price=" << crr_pricer2(true) << std::endl;
+        }
+        std::cout << std::endl << "*********************************************************" << std::endl;
+    }

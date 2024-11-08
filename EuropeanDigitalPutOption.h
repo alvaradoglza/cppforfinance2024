@@ -1,3 +1,5 @@
+#ifndef EUROPEANDIGITALPUTOPTION_H
+#define EUROPEANDIGITALPUTOPTION_H
 #include "EuropeanDigitalOption.h"
 
 
@@ -9,3 +11,4 @@ public:
         return (z <= _strike) ? 1.0 : 0.0;
     }
 };
+#endif

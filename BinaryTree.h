@@ -1,3 +1,5 @@
+#ifndef BINARYTREE_H
+#define BINARYTREE_H
 #include <vector>
 #include <iostream>
 
@@ -36,3 +38,4 @@ public:
         }
     }
 };
+#endif
