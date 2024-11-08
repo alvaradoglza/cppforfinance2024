@@ -9,8 +9,6 @@
 
 #include "Option.h" // Include the base Option class
 
-enum optionType {call, put} ;
-
 class EuropeanVanillaOption : public Option {
 private:
     double _strike;

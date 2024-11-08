@@ -10,5 +10,11 @@ public:
     double payoff(double z) const override {
         return (z <= _strike) ? 1.0 : 0.0;
     }
+
+    // Return the option type (Put)
+    optionType GetOptionType() const override {
+        return optionType::put;
+    }
+
 };
 #endif

@@ -11,14 +11,14 @@
 #include "EuropeanVanillaOption.h" // Include the base class
 class BlackScholesPricer {
 private:
-    EuropeanVanillaOption* _option;
+    Option* _option;
     double _asset_price;
     double _interest_rate;
     double _volatility;
 
 public:
     // Constructor
-    BlackScholesPricer(EuropeanVanillaOption* option, double asset_price, double interest_rate, double volatility) 
+    BlackScholesPricer(Option* option, double asset_price, double interest_rate, double volatility) 
         : _option(option), _asset_price(asset_price), _interest_rate(interest_rate), _volatility(volatility) {
         if (asset_price <= 0 || interest_rate < 0 || volatility < 0) {
             throw std::invalid_argument("Invalid input values. Asset price, interest rate, and volatility must be non-negative, and asset price must be positive.");

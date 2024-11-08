@@ -7,6 +7,8 @@
 #ifndef OPTION_H
 #define OPTION_H
 
+enum optionType {call, put} ;
+
 class Option {
 private:
     double _expiry;
@@ -27,6 +29,8 @@ public:
 
     // Pure virtual function for payoff
     virtual double payoff(double) const = 0;
+    virtual double getStrike() const = 0;
+    virtual optionType GetOptionType() const = 0;
 };
 
 #endif
