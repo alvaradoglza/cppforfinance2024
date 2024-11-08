@@ -1,0 +1,10 @@
+#include "EuropeanDigitalOption.h"
+
+class EuropeanDigitalCallOption : public EuropeanDigitalOption {
+public:
+    EuropeanDigitalCallOption(double expiry, double strike) : EuropeanDigitalOption(expiry, strike) {}
+
+    double payoff(double z) const override {
+        return (z >= _strike) ? 1.0 : 0.0;
+    }
+};
