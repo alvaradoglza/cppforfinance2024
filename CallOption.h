@@ -21,7 +21,7 @@ public:
     }
 
     // Return the option type (Call)
-    optionType GetOptionType() const override {
+    optionType getOptionType() const override {
         return optionType::call;
     }
 };

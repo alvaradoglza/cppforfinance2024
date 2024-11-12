@@ -12,7 +12,7 @@ public:
     }
 
     // Return the option type (Put)
-    optionType GetOptionType() const override {
+    optionType getOptionType() const override {
         return optionType::put;
     }
 

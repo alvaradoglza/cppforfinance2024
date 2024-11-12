@@ -18,7 +18,7 @@ public:
     }
 
     // Pure virtual method to get option type (to be implemented by derived classes)
-    virtual optionType GetOptionType() const = 0;
+    virtual optionType getOptionType() const = 0;
 
 };
 #endif
