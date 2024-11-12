@@ -2,7 +2,7 @@
 // File: option.h
 // Author: Emmy
 // Date: 23/10/2024
-// Description: Enhanced header file for Option class
+// Description: Enhanced header file for Option class with American Option support
 // =========================================================
 #ifndef OPTION_H
 #define OPTION_H
@@ -51,6 +51,11 @@ public:
     // Virtual function to check if the option is Asian
     virtual bool isAsianOption() const {
         return false; // Default: not an Asian option
+    }
+
+    // Virtual function to check if the option is American
+    virtual bool isAmericanOption() const {
+        return false; // Default: not an American option
     }
 
     // Virtual destructor
