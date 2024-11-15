@@ -99,8 +99,21 @@ public:
     }
 
     // Operator to calculate option price
-    double operator()() const {
-        return _tree.getNode(0, 0);
+    double operator()(bool closed_form = false) {
+        if (closed_form) {
+            
+            double q = (_interest_rate - _down) / (_up - _down);
+            double price = 0.0;
+            for (int i = 0; i <= _depth; ++i) {
+                double stock_price = _asset_price * pow(1 + _up, i) * pow(1 + _down, _depth - i);
+                double binomial_coeff = std::tgamma(_depth + 1) / (std::tgamma(i + 1) * std::tgamma(_depth - i + 1));
+                price += binomial_coeff * pow(q, i) * pow(1 - q, _depth - i) * _option->payoff(stock_price);
+            }
+            return price / pow(1 + _interest_rate, _depth);
+        } else {
+            compute();
+            return get(0, 0);
+        }
     }
 };
 

@@ -37,7 +37,7 @@ public:
         double Nd1 = 0.5 * std::erfc(-d1 / std::sqrt(2));  // Cumulative distribution function for the standard normal
         double Nd2 = 0.5 * std::erfc(-d2 / std::sqrt(2));
 
-        if (_option->GetOptionType() == optionType::call) {
+        if (_option->getOptionType() == optionType::call) {
             // Call option price
             return S * Nd1 - K * std::exp(-r * T) * Nd2;
         } 
@@ -58,7 +58,7 @@ public:
         double d1 = (std::log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * std::sqrt(T));
         double Nd1 = 0.5 * std::erfc(-d1 / std::sqrt(2));
 
-        if (_option->GetOptionType() == optionType::call) {
+        if (_option->getOptionType() == optionType::call) {
             // Delta for a call option
             return Nd1;
         } 
