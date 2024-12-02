@@ -1,31 +1,33 @@
+// =========================================================
+// File: AsianOption.h
+// Author: Emmy
+// Date: 23/10/2024
+// Description: Header file for the AsianOption class
+// =========================================================
+
 #ifndef ASIANOPTION_H
 #define ASIANOPTION_H
 
 #include "Option.h"
+#include <vector>
 
+// AsianOption class, derived from Option
 class AsianOption : public Option {
 private:
-    std::vector<double> timeSteps;
+    std::vector<double> timeSteps; // Time steps for the Asian option
 
 public:
-    explicit AsianOption(const std::vector<double>& timeSteps) : timeSteps(timeSteps) {}
+    // Constructor
+    explicit AsianOption(const std::vector<double>& timeSteps);
 
-    const std::vector<double>& getTimeSteps() const {
-        return timeSteps;
-    }
+    // Getter for time steps
+    const std::vector<double>& getTimeSteps() const;
 
-    double payoffPath(const std::vector<double>& path) const override {
-        double sum = 0.0;
-        for (double St : path) {
-            sum += St;
-        }
-        double average = sum / path.size();
-        return payoff(average);
-    }
+    // Override payoffPath function for path-dependent payoff
+    double payoffPath(const std::vector<double>& path) const override;
 
-    bool isAsianOption() const override {
-        return true;
-    }
+    // Override isAsianOption function
+    bool isAsianOption() const override;
 };
 
-#endif
+#endif // ASIANOPTION_H

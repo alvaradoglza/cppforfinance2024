@@ -1,29 +1,26 @@
 // =========================================================
-// File: putOption.h
-// Author: 
+// File: PutOption.h
+// Author: Emmy
 // Date: 23/10/2024
-// Description: Header file for PutOption class
+// Description: Header file for the PutOption class
 // =========================================================
+
 #ifndef PUTOPTION_H
 #define PUTOPTION_H
 
-#include "EuropeanVanillaOption.h" // Include the base class
+#include "EuropeanVanillaOption.h"
 
+// PutOption class derived from EuropeanVanillaOption
 class PutOption : public EuropeanVanillaOption {
 public:
-
     // Constructor
-    PutOption(double expiry, double strike) : EuropeanVanillaOption(expiry, strike) {}
+    PutOption(double expiry, double strike);
 
     // Implement the payoff function for Put Option
-    double payoff(double z) const override {
-        return (z <= getStrike()) ? (getStrike() - z) : 0;
-    }
+    double payoff(double z) const override;
 
     // Return the option type (Put)
-    optionType getOptionType() const override {
-        return optionType::put;
-    }
+    optionType getOptionType() const override;
 };
 
-#endif
+#endif // PUTOPTION_H

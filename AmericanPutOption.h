@@ -1,26 +1,33 @@
+// =========================================================
+// File: AmericanPutOption.h
+// Author: Emmy
+// Date: 23/10/2024
+// Description: Header file for the AmericanPutOption class
+// =========================================================
+
 #ifndef AMERICANPUTOPTION_H
 #define AMERICANPUTOPTION_H
-#include "AmericanOption.h"
 
+#include "AmericanOption.h"
+#include <algorithm> // For std::max
+
+// AmericanPutOption class, derived from AmericanOption
 class AmericanPutOption : public AmericanOption {
 private:
     double strike;
 
 public:
-    AmericanPutOption(double expiry, double strike)
-        : AmericanOption(expiry), strike(strike) {}
+    // Constructor
+    AmericanPutOption(double expiry, double strike);
 
-    double payoff(double spotPrice) const override {
-        return std::max(strike - spotPrice, 0.0);
-    }
+    // Override payoff function
+    double payoff(double spotPrice) const override;
 
-    double getStrike() const override {
-        return strike;
-    }
+    // Override getStrike function
+    double getStrike() const override;
 
-    optionType getOptionType() const override {
-        return optionType::put;
-    }
+    // Override getOptionType function
+    optionType getOptionType() const override;
 };
 
-#endif
+#endif // AMERICANPUTOPTION_H

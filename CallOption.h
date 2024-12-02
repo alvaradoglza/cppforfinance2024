@@ -1,29 +1,26 @@
 // =========================================================
 // File: CallOption.h
-// Author: 
+// Author: Emmy
 // Date: 23/10/2024
 // Description: Header file for CallOption class
 // =========================================================
+
 #ifndef CALLOPTION_H
 #define CALLOPTION_H
 
-#include "EuropeanVanillaOption.h" // Include the base class
+#include "EuropeanVanillaOption.h"
 
+// CallOption class derived from EuropeanVanillaOption
 class CallOption : public EuropeanVanillaOption {
 public:
-
     // Constructor
-    CallOption(double expiry, double strike) : EuropeanVanillaOption(expiry, strike) {}
+    CallOption(double expiry, double strike);
 
     // Implement the payoff function for Call Option
-    double payoff(double z) const override {
-        return (z >= getStrike()) ? (z - getStrike()) : 0;
-    }
+    double payoff(double z) const override;
 
     // Return the option type (Call)
-    optionType getOptionType() const override {
-        return optionType::call;
-    }
+    optionType getOptionType() const override;
 };
 
-#endif
+#endif // CALLOPTION_H

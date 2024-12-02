@@ -1,59 +1,42 @@
+// =========================================================
+// File: BlackScholesMCPricer.h
+// Author: Emmy
+// Date: 23/10/2024
+// Description: Header file for the Black-Scholes Monte Carlo Pricer
+// =========================================================
+
 #ifndef BLACKSCHOLESMCPRICER_H
 #define BLACKSCHOLESMCPRICER_H
+
+#include "Option.h"
 #include "MT.h"
+#include <vector>
+#include <cmath>
+#include <stdexcept>
 
-
-
+// Class for pricing options using the Black-Scholes Monte Carlo method
 class BlackScholesMCPricer {
 private:
-    Option* option;
-    double S0, r, sigma;
-    int nbPaths = 0;
-    double currentPrice = 0.0;
+    Option* option;  // Pointer to the option being priced
+    double S0, r, sigma;  // Initial price, interest rate, and volatility
+    int nbPaths;  // Number of paths generated
+    double currentPrice;  // Current price estimate
 
 public:
-    BlackScholesMCPricer(Option* option, double initial_price, double interest_rate, double volatility)
-        : option(option), S0(initial_price), r(interest_rate), sigma(volatility) {
-        if (option->isAsianOption()) {
-            throw std::invalid_argument("Asian options not allowed in CRRPricer.");
-        }
-    }
+    // Constructor
+    BlackScholesMCPricer(Option* option, double initial_price, double interest_rate, double volatility);
 
-    int getNbPaths() const {
-        return nbPaths;
-    }
+    // Getter for the number of paths
+    int getNbPaths() const;
 
-    void generate(int nb_paths) {
-        std::vector<double> path;
-        double dt = 1.0 / nb_paths;
+    // Generate paths and update the price estimate
+    void generate(int nb_paths);
 
-        for (int i = 0; i < nb_paths; ++i) {
-            path.clear();
-            double St = S0;
-            for (double t = dt; t <= 1.0; t += dt) {
-                double Z = MT::rand_norm();
-                St *= std::exp((r - 0.5 * sigma * sigma) * dt + sigma * std::sqrt(dt) * Z);
-                path.push_back(St);
-            }
-            currentPrice += option->payoffPath(path);
-        }
+    // Overloaded operator to retrieve the current price
+    double operator()() const;
 
-        nbPaths += nb_paths;
-        currentPrice /= nbPaths;
-    }
-
-    double operator()() const {
-        if (nbPaths == 0) {
-            throw std::runtime_error("No paths generated yet.");
-        }
-        return currentPrice;
-    }
-
-    std::vector<double> confidenceInterval() const {
-        double stddev = std::sqrt(currentPrice / nbPaths);
-        double margin = 1.96 * stddev / std::sqrt(nbPaths);
-        return {currentPrice - margin, currentPrice + margin};
-    }
+    // Calculate the confidence interval for the current price estimate
+    std::vector<double> confidenceInterval() const;
 };
 
-#endif
+#endif // BLACKSCHOLESMCPRICER_H

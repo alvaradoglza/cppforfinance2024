@@ -1,22 +1,30 @@
+// =========================================================
+// File: AsianCallOption.h
+// Author: Emmy
+// Date: 23/10/2024
+// Description: Header file for the AsianCallOption class
+// =========================================================
+
 #ifndef ASIANCALLOPTION_H
 #define ASIANCALLOPTION_H
-#include "AsianOption.h"
 
+#include "AsianOption.h"
+#include <algorithm> // For std::max
+
+// AsianCallOption class, derived from AsianOption
 class AsianCallOption : public AsianOption {
 private:
-    double strike;
+    double strike; // Strike price for the Asian call option
 
 public:
-    AsianCallOption(const std::vector<double>& timeSteps, double strike)
-        : AsianOption(timeSteps), strike(strike) {}
+    // Constructor
+    AsianCallOption(const std::vector<double>& timeSteps, double strike);
 
-    double payoff(double St) const override {
-        return std::max(St - strike, 0.0); // Call payoff
-    }
+    // Override payoff function
+    double payoff(double St) const override;
 
-    optionType getOptionType() const override {
-        return optionType::call;
-    }
+    // Override getOptionType function
+    optionType getOptionType() const override;
 };
 
-#endif
+#endif // ASIANCALLOPTION_H

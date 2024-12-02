@@ -15,3 +15,9 @@ if you hava a problem and want the push to overrite your changes, to this before
  TO run the code: 
  g++ main.cpp -o test_program
 ./test_program
+
+
+g++ -o main main.cpp AmericanCallOption.cpp AmericanOption.cpp AmericanPutOption.cpp AsianCallOption.cpp AsianOption.cpp AsianPutOption.cpp BlackScholesMCPricer.cpp BlackScholesPricer.cpp CallOption.cpp CRRPricer.cpp EuropeanDigitalCallOption.cpp EuropeanDigitalOption.cpp EuropeanDigitalPutOption.cpp EuropeanVanillaOption.cpp MT.cpp Option.cpp PutOption.cpp -std=c++17 -Wall
+./main
+
+

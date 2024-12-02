@@ -1,23 +1,30 @@
+// =========================================================
+// File: AsianPutOption.h
+// Author: Emmy
+// Date: 23/10/2024
+// Description: Header file for the AsianPutOption class
+// =========================================================
+
 #ifndef ASIANPUTOPTION_H
 #define ASIANPUTOPTION_H
-#include "AsianOption.h"
 
+#include "AsianOption.h"
+#include <algorithm> // For std::max
+
+// AsianPutOption class, derived from AsianOption
 class AsianPutOption : public AsianOption {
 private:
-    double strike;
+    double strike; // Strike price for the Asian put option
 
 public:
-    AsianPutOption(const std::vector<double>& timeSteps, double strike)
-        : AsianOption(timeSteps), strike(strike) {}
+    // Constructor
+    AsianPutOption(const std::vector<double>& timeSteps, double strike);
 
-    double payoff(double St) const override {
-        return std::max(strike - St, 0.0); // Put payoff
-    }
+    // Override payoff function
+    double payoff(double St) const override;
 
-    optionType getOptionType() const override {
-        return optionType::put; // Return the correct type
-    }
-
+    // Override getOptionType function
+    optionType getOptionType() const override;
 };
 
-#endif
+#endif // ASIANPUTOPTION_H

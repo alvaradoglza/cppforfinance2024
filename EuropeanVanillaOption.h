@@ -1,35 +1,33 @@
 // =========================================================
-// File: europeanVanillaOption.h
-// Author: [Your Name]
-// Date: [Current Date]
-// Description: Header file for EuropeanVanillaOption class
+// File: EuropeanVanillaOption.h
+// Author: Emmy
+// Date: 23/10/2024
+// Description: Header file for the EuropeanVanillaOption class
 // =========================================================
+
 #ifndef EUROPEANVANILLAOPTION_H
 #define EUROPEANVANILLAOPTION_H
 
-#include "Option.h" // Include the base Option class
+#include "Option.h"
+#include <stdexcept>
 
+// Abstract base class for European Vanilla Options
 class EuropeanVanillaOption : public Option {
 private:
-    double _strike;
+    double _strike; // Strike price of the option
 
 public:
-
-    // Constructor to initialize _expiry and _strike
-    EuropeanVanillaOption(double expiry, double strike) : Option(expiry), _strike(strike) {
-        if (strike < 0) {
-            throw std::invalid_argument("Strike must be non-negative");
-        }
-    }
+    // Constructor
+    EuropeanVanillaOption(double expiry, double strike);
 
     // Getter for _strike
-    double getStrike() const {
-        return _strike;
-    }
+    double getStrike() const;
 
-    // Pure virtual method to get option type (to be implemented by derived classes)
+    // Pure virtual method for option type (to be implemented by derived classes)
     virtual optionType getOptionType() const = 0;
 
+    // Virtual destructor
+    virtual ~EuropeanVanillaOption() = default;
 };
 
-#endif
+#endif // EUROPEANVANILLAOPTION_H
